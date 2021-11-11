@@ -1,0 +1,39 @@
+@model List<PacotesTuristicos>
+
+@{
+    ViewData["title"] = "listagem de Pacotes Turisticos";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Nome</td>
+            <td>Origem</td>
+            <td>Destino</td>
+            <td>Atrativos</td>
+            <td>Saida</td>
+            <td>Retorno</td>
+            <td>Operações</td>
+
+        </tr>
+    </thead>
+
+    @foreach (PacotesTuristicos u in Model)
+    {
+        <tr>
+            <td>@u.Id</td>
+            <td>@u.Nome</td>
+            <td>@u.Origem</td>
+            <td>@u.Destino</td>
+            <td>@u.Atrativos</td>
+            <td>@u.Saida.ToShortDateString()</td>
+            <td>@u.Retorno.ToShortDateString()</td>
+            <td>
+                <a href="/PacotesTuristicos/Editar?Id=@u.Id">Alterar</a>
+                <a href="/PacotesTuristicos/Remover?Id=@u.Id"
+                onclick="return confirm('confirma excluir este registro')">Excluir</a>
+            </td>
+        </tr>
+    }
+</table>
